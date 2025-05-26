@@ -49,37 +49,55 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Modern Animated Background */}
+      {/* Enhanced Animated Background with Fixed Colors */}
       <div className="absolute inset-0 -z-10">
-        {/* Gradient Mesh Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"></div>
+        {/* Primary Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"></div>
         
-        {/* Animated Grid */}
-        <div className="absolute inset-0 opacity-20">
+        {/* Secondary Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/50 via-transparent to-cyan-900/30"></div>
+        
+        {/* Animated Grid Pattern */}
+        <div className="absolute inset-0 opacity-10">
           <motion.div
             className="absolute inset-0"
             style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                               linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-              backgroundSize: '50px 50px'
+              backgroundImage: `linear-gradient(rgba(99, 179, 237, 0.3) 1px, transparent 1px),
+                               linear-gradient(90deg, rgba(99, 179, 237, 0.3) 1px, transparent 1px)`,
+              backgroundSize: '60px 60px'
             }}
             animate={{
-              backgroundPosition: ['0px 0px', '50px 50px']
+              backgroundPosition: ['0px 0px', '60px 60px']
             }}
             transition={{
-              duration: 20,
+              duration: 25,
               repeat: Infinity,
               ease: 'linear'
             }}
           />
         </div>
 
-        {/* Floating Geometric Shapes */}
+        {/* Floating Geometric Elements */}
         <motion.div
-          className="absolute top-20 left-20 w-32 h-32 border border-cyan-400/30 rotate-45"
+          className="absolute top-20 left-20 w-40 h-40 border-2 border-cyan-400/20 rotate-45 rounded-lg"
           animate={{ 
             rotate: [45, 405],
-            scale: [1, 1.2, 1]
+            scale: [1, 1.1, 1],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        <motion.div
+          className="absolute bottom-32 right-32 w-32 h-32 border-2 border-purple-400/25 rounded-full"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.5, 0.2],
+            rotate: [0, 360]
           }}
           transition={{ 
             duration: 8, 
@@ -87,27 +105,13 @@ const HeroSection = () => {
             ease: "easeInOut"
           }}
         />
-        
-        <motion.div
-          className="absolute bottom-32 right-32 w-24 h-24 border border-purple-400/30 rounded-full"
-          animate={{ 
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.8, 0.3]
-          }}
-          transition={{ 
-            duration: 6, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
 
-        {/* Glowing Orbs */}
         <motion.div
-          className="absolute top-1/4 right-1/4 w-64 h-64 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full filter blur-3xl"
+          className="absolute top-1/2 left-1/4 w-24 h-24 border border-indigo-400/30 rotate-12"
           animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.3, 1]
+            rotate: [12, 372],
+            y: [0, -30, 0],
+            opacity: [0.3, 0.6, 0.3]
           }}
           transition={{
             duration: 12,
@@ -116,68 +120,138 @@ const HeroSection = () => {
           }}
         />
 
+        {/* Enhanced Glowing Orbs */}
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full filter blur-3xl"
+          className="absolute top-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-cyan-500/15 to-blue-600/10 rounded-full filter blur-3xl"
           animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            scale: [1, 1.4, 1]
+            x: [0, 120, -60, 0],
+            y: [0, -80, 40, 0],
+            scale: [1, 1.2, 0.8, 1]
           }}
           transition={{
-            duration: 10,
+            duration: 16,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
+            ease: "easeInOut"
           }}
         />
 
-        {/* Tech Circuit Lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+        <motion.div
+          className="absolute bottom-1/3 left-1/3 w-64 h-64 bg-gradient-to-r from-purple-600/15 to-indigo-500/10 rounded-full filter blur-3xl"
+          animate={{
+            x: [0, -100, 80, 0],
+            y: [0, 70, -40, 0],
+            scale: [1, 1.4, 0.9, 1]
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3
+          }}
+        />
+
+        <motion.div
+          className="absolute top-2/3 right-1/4 w-48 h-48 bg-gradient-to-r from-blue-500/10 to-cyan-400/15 rounded-full filter blur-2xl"
+          animate={{
+            x: [0, 60, -90, 0],
+            y: [0, -50, 70, 0],
+            scale: [0.8, 1.3, 1, 0.8]
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 6
+          }}
+        />
+
+        {/* Tech Circuit Lines with Better Colors */}
+        <svg className="absolute inset-0 w-full h-full opacity-15" xmlns="http://www.w3.org/2000/svg">
           <motion.path
-            d="M100,200 Q400,100 800,300 T1200,400"
+            d="M100,200 Q400,100 800,300 T1400,400"
             stroke="url(#gradient1)"
-            strokeWidth="2"
+            strokeWidth="3"
             fill="none"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 5, repeat: Infinity }}
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 6, repeat: Infinity, repeatType: "loop" }}
           />
           <motion.path
-            d="M200,500 Q600,300 1000,600 T1400,500"
+            d="M200,500 Q600,300 1000,600 T1600,500"
             stroke="url(#gradient2)"
             strokeWidth="2"
             fill="none"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 8, repeat: Infinity, delay: 2, repeatType: "loop" }}
+          />
+          <motion.path
+            d="M50,400 Q350,200 700,500 T1200,300"
+            stroke="url(#gradient3)"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 10, repeat: Infinity, delay: 4, repeatType: "loop" }}
           />
           <defs>
             <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#06b6d4" stopOpacity="0"/>
-              <stop offset="50%" stopColor="#06b6d4" stopOpacity="1"/>
+              <stop offset="50%" stopColor="#0ea5e9" stopOpacity="0.8"/>
               <stop offset="100%" stopColor="#06b6d4" stopOpacity="0"/>
             </linearGradient>
             <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0"/>
-              <stop offset="50%" stopColor="#8b5cf6" stopOpacity="1"/>
+              <stop offset="50%" stopColor="#a855f7" stopOpacity="0.7"/>
               <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0"/>
+              <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0"/>
             </linearGradient>
           </defs>
         </svg>
 
-        {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* Enhanced Floating Particles */}
+        {[...Array(25)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-cyan-400/60 rounded-full"
+            className={`absolute w-3 h-3 rounded-full ${
+              i % 3 === 0 ? 'bg-cyan-400/40' : 
+              i % 3 === 1 ? 'bg-blue-400/40' : 'bg-purple-400/40'
+            }`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0]
+              y: [0, -150, 0],
+              opacity: [0, 0.8, 0],
+              scale: [0, 1.2, 0],
+              x: [0, Math.random() * 50 - 25, 0]
+            }}
+            transition={{
+              duration: Math.random() * 4 + 3,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+
+        {/* Starfield Effect */}
+        {[...Array(50)].map((_, i) => (
+          <motion.div
+            key={`star-${i}`}
+            className="absolute w-1 h-1 bg-white/30 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              opacity: [0.3, 1, 0.3],
+              scale: [0.5, 1, 0.5]
             }}
             transition={{
               duration: Math.random() * 3 + 2,
@@ -200,19 +274,19 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 mb-8"
+            className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 mb-8 shadow-lg"
           >
             <span className="text-sm font-medium text-white/90">👋 Welcome to my portfolio</span>
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 leading-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
               Ahmed Rashad
             </span>
           </motion.h1>
@@ -226,14 +300,14 @@ const HeroSection = () => {
             <p className="leading-relaxed font-light">
               <span className="text-cyan-400 font-semibold">Mechatronics Engineer</span>{" "}
               |{" "}
-              <span className="text-purple-400 font-semibold">Embedded Systems Developer</span>{" "}
+              <span className="text-blue-400 font-semibold">Embedded Systems Developer</span>{" "}
               |{" "}
-              <span className="text-pink-400 font-semibold">Mobile App Creator</span>
+              <span className="text-purple-400 font-semibold">Mobile App Creator</span>
             </p>
             <p className="leading-relaxed font-light mt-2">
-              <span className="text-blue-400 font-semibold">Mechanical Designer</span>{" "}
+              <span className="text-indigo-400 font-semibold">Mechanical Designer</span>{" "}
               |{" "}
-              <span className="text-indigo-400 font-semibold">Multimedia Editor</span>
+              <span className="text-violet-400 font-semibold">Multimedia Editor</span>
             </p>
           </motion.div>
 
@@ -255,7 +329,7 @@ const HeroSection = () => {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-12 py-7 text-lg rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 border-0"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-12 py-7 text-lg rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 border-0"
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
             >
               <span className="mr-2">🚀</span>
