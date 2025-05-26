@@ -49,26 +49,147 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Enhanced Background Elements */}
+      {/* Modern Animated Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse delay-2000"></div>
+        {/* Gradient Mesh Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"></div>
         
-        {/* Additional floating elements */}
+        {/* Animated Grid */}
+        <div className="absolute inset-0 opacity-20">
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                               linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+              backgroundSize: '50px 50px'
+            }}
+            animate={{
+              backgroundPosition: ['0px 0px', '50px 50px']
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: 'linear'
+            }}
+          />
+        </div>
+
+        {/* Floating Geometric Shapes */}
         <motion.div
-          className="absolute top-20 right-20 w-4 h-4 bg-blue-400 rounded-full"
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          className="absolute top-20 left-20 w-32 h-32 border border-cyan-400/30 rotate-45"
+          animate={{ 
+            rotate: [45, 405],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         />
+        
         <motion.div
-          className="absolute bottom-32 left-20 w-6 h-6 bg-purple-400 rounded-full"
-          animate={{ y: [0, 20, 0] }}
-          transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+          className="absolute bottom-32 right-32 w-24 h-24 border border-purple-400/30 rounded-full"
+          animate={{ 
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 0.8, 0.3]
+          }}
+          transition={{ 
+            duration: 6, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         />
+
+        {/* Glowing Orbs */}
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-64 h-64 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full filter blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full filter blur-3xl"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.4, 1]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+
+        {/* Tech Circuit Lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+          <motion.path
+            d="M100,200 Q400,100 800,300 T1200,400"
+            stroke="url(#gradient1)"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 5, repeat: Infinity }}
+          />
+          <motion.path
+            d="M200,500 Q600,300 1000,600 T1400,500"
+            stroke="url(#gradient2)"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+          />
+          <defs>
+            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0"/>
+              <stop offset="50%" stopColor="#06b6d4" stopOpacity="1"/>
+              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0"/>
+              <stop offset="50%" stopColor="#8b5cf6" stopOpacity="1"/>
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        {/* Floating Particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-cyan-400/60 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0]
+            }}
+            transition={{
+              duration: Math.random() * 3 + 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
-      <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,47 +200,62 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200 mb-8"
+            className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 mb-8"
           >
-            <span className="text-sm font-medium text-gray-600">👋 Welcome to my portfolio</span>
+            <span className="text-sm font-medium text-white/90">👋 Welcome to my portfolio</span>
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Ahmed Rashad
             </span>
           </motion.h1>
 
           <motion.div
-            className="text-2xl md:text-3xl text-gray-600 mb-12 max-w-4xl mx-auto"
+            className="text-xl md:text-2xl text-white/80 mb-8 max-w-5xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <p className="leading-relaxed">
-              A passionate{" "}
-              <span className="text-blue-600 font-bold">Programmer</span>{" "}
-              &{" "}
-              <span className="text-purple-600 font-bold">Video Editor</span>{" "}
-              creating amazing digital experiences
+            <p className="leading-relaxed font-light">
+              <span className="text-cyan-400 font-semibold">Mechatronics Engineer</span>{" "}
+              |{" "}
+              <span className="text-purple-400 font-semibold">Embedded Systems Developer</span>{" "}
+              |{" "}
+              <span className="text-pink-400 font-semibold">Mobile App Creator</span>
+            </p>
+            <p className="leading-relaxed font-light mt-2">
+              <span className="text-blue-400 font-semibold">Mechanical Designer</span>{" "}
+              |{" "}
+              <span className="text-indigo-400 font-semibold">Multimedia Editor</span>
             </p>
           </motion.div>
+
+          <motion.p
+            className="text-lg md:text-xl text-white/70 mb-12 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            A passionate mechatronics engineering student at MSA University who loves building smart solutions 
+            that blend electronics, mechanical design, and software development.
+          </motion.p>
 
           <motion.div
             className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-7 text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-12 py-7 text-lg rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 border-0"
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
             >
               <span className="mr-2">🚀</span>
@@ -128,7 +264,7 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-10 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-white/80 backdrop-blur-sm"
+              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-12 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-white/5 backdrop-blur-sm"
             >
               <Download className="mr-2" size={20} />
               Download CV
@@ -140,7 +276,7 @@ const HeroSection = () => {
             className="flex justify-center items-center space-x-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
           >
             {socialLinks.map((link, index) => (
               <motion.a
@@ -152,8 +288,8 @@ const HeroSection = () => {
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
-                className="p-4 bg-white/80 backdrop-blur-sm rounded-full text-gray-600 hover:text-blue-600 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
+                className="p-4 bg-white/10 backdrop-blur-lg rounded-full text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/20"
               >
                 {link.icon}
               </motion.a>
@@ -166,17 +302,21 @@ const HeroSection = () => {
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
+          transition={{ duration: 1, delay: 1.4 }}
         >
           <motion.button
             onClick={scrollToAbout}
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2.5, repeat: Infinity }}
-            className="flex flex-col items-center text-gray-400 hover:text-blue-600 transition-colors duration-300 group"
+            className="flex flex-col items-center text-white/60 hover:text-white transition-colors duration-300 group"
           >
             <span className="text-sm font-medium mb-2 opacity-75 group-hover:opacity-100">Scroll Down</span>
             <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-current rounded-full mt-2 animate-pulse"></div>
+              <motion.div 
+                className="w-1 h-3 bg-current rounded-full mt-2"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
             </div>
             <ArrowDown size={20} className="mt-2" />
           </motion.button>

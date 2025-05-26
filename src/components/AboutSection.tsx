@@ -1,223 +1,240 @@
 
 import { motion } from "framer-motion";
-import { Code, Video, Camera, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Cpu, 
+  Smartphone, 
+  Wrench, 
+  Car, 
+  Video, 
+  GraduationCap,
+  Code,
+  Zap,
+  Settings,
+  Camera
+} from "lucide-react";
+import SectionTemplate from "@/components/SectionTemplate";
 
 const AboutSection = () => {
   const skills = [
-    { name: "HTML", level: 95 },
-    { name: "CSS", level: 90 },
-    { name: "JavaScript", level: 85 },
-    { name: "Video Editing", level: 90 },
-    { name: "Video Production", level: 80 },
+    {
+      category: "🔌 Embedded Systems & Robotics",
+      icon: <Cpu className="w-8 h-8" />,
+      color: "from-blue-500 to-cyan-500",
+      projects: [
+        "Smart Home System with ESP32 & Flutter app",
+        "Maze-Solving Robot with IR sensors",
+        "Wall-Following Robot with PID control",
+        "QR File Sharing System"
+      ]
+    },
+    {
+      category: "⚙️ Mechanical & Circuit Design", 
+      icon: <Settings className="w-8 h-8" />,
+      color: "from-purple-500 to-indigo-500",
+      projects: [
+        "Gear assemblies in Autodesk Inventor",
+        "PCB design in KiCad",
+        "Proteus circuit simulations",
+        "Transmission systems design"
+      ]
+    },
+    {
+      category: "🚗 Automotive Repair & Customization",
+      icon: <Car className="w-8 h-8" />,
+      color: "from-red-500 to-orange-500", 
+      projects: [
+        "Toyota KP30 Android screen installation",
+        "Peugeot 405 GL maintenance",
+        "Toyota Yaris troubleshooting",
+        "Custom audio system installation"
+      ]
+    },
+    {
+      category: "💻 PC, Laptop & Mobile Repairs",
+      icon: <Wrench className="w-8 h-8" />,
+      color: "from-green-500 to-emerald-500",
+      projects: [
+        "Hardware diagnostics and repair",
+        "Soldering and component replacement", 
+        "Software troubleshooting",
+        "Mobile device repairs"
+      ]
+    },
+    {
+      category: "📱 Mobile App Development",
+      icon: <Smartphone className="w-8 h-8" />,
+      color: "from-pink-500 to-rose-500",
+      projects: [
+        "Flutter smart home controller",
+        "Real-time hardware integration",
+        "HTTP/JSON communication",
+        "Responsive UI design"
+      ]
+    },
+    {
+      category: "👨‍🏫 Education & Team Leadership",
+      icon: <GraduationCap className="w-8 h-8" />,
+      color: "from-yellow-500 to-amber-500",
+      projects: [
+        "Front-end web training workshops",
+        "HTML/CSS teaching",
+        "Community learning management",
+        "Team project coordination"
+      ]
+    },
+    {
+      category: "🎞 Video & Photo Editing",
+      icon: <Video className="w-8 h-8" />,
+      color: "from-violet-500 to-purple-500",
+      projects: [
+        "Adobe Premiere Pro editing",
+        "Clipchamp video production",
+        "Educational video creation",
+        "Social media content"
+      ]
+    }
   ];
 
-  const services = [
+  const tools = [
     {
-      icon: Code,
-      title: "Front End Development",
-      description: "Building responsive and modern websites using HTML, CSS, JavaScript, and modern frameworks.",
+      category: "Programming",
+      items: ["C/C++", "Dart", "Flutter", "HTML", "CSS", "JavaScript"]
     },
     {
-      icon: Video,
-      title: "Video Editing",
-      description: "Professional video editing using Adobe Premiere Pro, Clipchamp, and other industry-standard tools.",
+      category: "Hardware", 
+      items: ["ESP32", "IR/MQ sensors", "Ultrasonic", "MPU9250"]
     },
     {
-      icon: Camera,
-      title: "Video Production",
-      description: "Complete video production services from concept to final delivery with professional techniques.",
-    },
-  ];
-
-  const education = [
-    {
-      school: "Lycee El Haram",
-      period: "Till grade 2",
-      description: "Foundation years of education",
-      logo: "/Images/lyceLogo.jpg"
+      category: "Electronics",
+      items: ["KiCad", "Proteus", "Soldering tools", "PCB Design"]
     },
     {
-      school: "College De La Salle",
-      period: "From grade 3 to graduation",
-      description: "Comprehensive secondary education",
-      logo: "/Images/dlsLogo.jpg"
+      category: "Mechanical",
+      items: ["Autodesk Inventor", "Gear Design", "CAD Modeling"]
     },
     {
-      school: "MSA University",
-      period: "Current",
-      description: "Pursuing higher education in technology",
-      logo: "/Images/msaLogo.png"
+      category: "Development",
+      items: ["Visual Studio Code", "Flutter", "Firebase", "GitHub"]
     },
+    {
+      category: "Media",
+      items: ["Adobe Premiere Pro", "Clipchamp", "Photo Editing"]
+    }
   ];
 
   return (
-    <section id="about" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Me</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            I'm a passionate programmer and video editor who loves creating amazing digital experiences.
-            I specialize in front-end development and professional video editing, bringing creativity and technical expertise to every project.
-          </p>
-        </motion.div>
-
-        {/* Services Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-24"
-        >
-          <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What I <span className="text-blue-600">Do</span>
-            </h3>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Here are the main services I offer to help bring your digital projects to life
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="p-8 h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-gray-50 to-white">
-                  <CardContent className="p-0 text-center">
-                    <motion.div 
-                      className="text-blue-600 mb-6 flex justify-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <service.icon size={64} />
-                    </motion.div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-4">
-                      {service.title}
-                    </h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Skills Section */}
+    <SectionTemplate
+      id="about"
+      title="About Me"
+      subtitle="Passionate mechatronics engineering student at MSA University"
+      description="Whether it's automating a smart home, solving a maze with a robot, designing gear systems, or editing high-quality videos, I enjoy making ideas come to life through hands-on projects."
+      background="white"
+    >
+      {/* Skills Grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        {skills.map((skill, index) => (
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            key={skill.category}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                My <span className="text-blue-600">Skills</span>
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                I have experience in various technologies and tools that help me create
-                beautiful websites and professional videos. Here's my expertise level in each area.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white p-4 rounded-lg shadow-sm border"
-                >
-                  <div className="flex justify-between mb-3">
-                    <span className="text-lg font-semibold text-gray-900">{skill.name}</span>
-                    <span className="text-lg font-bold text-blue-600">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <motion.div
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 h-3 rounded-full shadow-sm"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1.2, delay: 0.5 + index * 0.1 }}
-                      viewport={{ once: true }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <Card className="h-full hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-white to-gray-50">
+              <CardContent className="p-8">
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${skill.color} flex items-center justify-center text-white mb-6 shadow-lg`}>
+                  {skill.icon}
+                </div>
+                
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  {skill.category}
+                </h3>
+                
+                <ul className="space-y-2">
+                  {skill.projects.map((project, i) => (
+                    <li key={i} className="text-gray-600 text-sm flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      {project}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           </motion.div>
-
-          {/* Education Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                My <span className="text-blue-600">Education</span>
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                My educational journey has shaped my foundation in technology and creativity.
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={edu.school}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-l-blue-600">
-                    <CardContent className="p-0 flex items-start space-x-4">
-                      <div className="flex-shrink-0 mt-1">
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                          <GraduationCap className="text-white" size={24} />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">
-                          {edu.school}
-                        </h4>
-                        <p className="text-blue-600 font-semibold mb-2">
-                          {edu.period}
-                        </p>
-                        <p className="text-gray-600">
-                          {edu.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+        ))}
       </div>
-    </section>
+
+      {/* Tools Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="mb-16"
+      >
+        <div className="text-center mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            🧰 Tools I Use
+          </h3>
+          <div className="w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {tools.map((toolCategory, index) => (
+            <motion.div
+              key={toolCategory.category}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="h-full border-0 bg-gradient-to-br from-gray-50 to-white shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-6">
+                  <h4 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                    <span className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
+                    {toolCategory.category}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {toolCategory.items.map((tool, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Personal Quote */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-center"
+      >
+        <Card className="max-w-4xl mx-auto border-0 bg-gradient-to-r from-blue-50 to-purple-50 shadow-xl">
+          <CardContent className="p-12">
+            <div className="text-6xl mb-6">💡</div>
+            <blockquote className="text-xl md:text-2xl text-gray-700 font-light italic leading-relaxed">
+              "I believe technology should make life easier and more connected. 
+              Every project I work on aims to bridge the gap between complex engineering 
+              and practical, user-friendly solutions."
+            </blockquote>
+            <div className="mt-6">
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </SectionTemplate>
   );
 };
 
