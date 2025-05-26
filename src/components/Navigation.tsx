@@ -45,7 +45,7 @@ const Navigation = () => {
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
           >
-            Portfolio
+            Ahmed
           </motion.div>
 
           {/* Desktop Navigation */}

@@ -1,37 +1,50 @@
 
 import { motion } from "framer-motion";
-import { Code, Palette, Zap, Users } from "lucide-react";
+import { Code, Video, Camera, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const AboutSection = () => {
   const skills = [
-    { name: "React", level: 95 },
-    { name: "TypeScript", level: 90 },
-    { name: "Node.js", level: 85 },
-    { name: "Python", level: 80 },
-    { name: "UI/UX Design", level: 75 },
+    { name: "HTML", level: 95 },
+    { name: "CSS", level: 90 },
+    { name: "JavaScript", level: 85 },
+    { name: "Video Editing", level: 90 },
+    { name: "Video Production", level: 80 },
   ];
 
-  const features = [
+  const services = [
     {
       icon: Code,
-      title: "Clean Code",
-      description: "Writing maintainable, scalable, and efficient code following best practices.",
+      title: "Front End Development",
+      description: "Building websites using HTML, CSS and JavaScript.",
     },
     {
-      icon: Palette,
-      title: "Modern Design",
-      description: "Creating beautiful, intuitive interfaces with attention to user experience.",
+      icon: Video,
+      title: "Video Editing",
+      description: "Editing videos using Adobe Premiere and Clipchamp.",
     },
     {
-      icon: Zap,
-      title: "Fast Performance",
-      description: "Optimizing applications for speed and seamless user interactions.",
+      icon: Camera,
+      title: "Video Production",
+      description: "Capturing professional videos using simple methods.",
+    },
+  ];
+
+  const education = [
+    {
+      school: "Lycee El Haram",
+      period: "Till grade 2",
+      logo: "/Images/lyceLogo.jpg"
     },
     {
-      icon: Users,
-      title: "Team Player",
-      description: "Collaborating effectively with cross-functional teams to deliver results.",
+      school: "College De La Salle",
+      period: "From grade 3 to graduation",
+      logo: "/Images/dlsLogo.jpg"
+    },
+    {
+      school: "MSA University",
+      period: "Current",
+      logo: "/Images/msaLogo.png"
     },
   ];
 
@@ -49,27 +62,59 @@ const AboutSection = () => {
             About Me
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I'm a passionate developer with 5+ years of experience building web applications.
-            I love turning complex problems into simple, beautiful, and intuitive solutions.
+            I'm a passionate programmer and video editor who loves creating amazing digital experiences.
+            I specialize in front-end development and professional video editing.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        {/* Services Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Services</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="p-6 h-full hover:shadow-lg transition-shadow duration-300 text-center">
+                  <CardContent className="p-0">
+                    <div className="text-blue-600 mb-4 flex justify-center">
+                      <service.icon size={48} />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      {service.title}
+                    </h4>
+                    <p className="text-gray-600 text-sm">
+                      {service.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Skills Section */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">My Journey</h3>
-            <p className="text-gray-600 mb-4">
-              Starting as a curious computer science student, I've evolved into a full-stack developer
-              who thrives on creating digital experiences that make a difference. My passion lies in
-              the intersection of technology and design.
-            </p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">My Skills</h3>
             <p className="text-gray-600 mb-6">
-              When I'm not coding, you'll find me exploring new technologies, contributing to open-source
-              projects, or sharing knowledge with the developer community.
+              I have experience in various technologies and tools that help me create
+              beautiful websites and professional videos.
             </p>
 
             <div className="space-y-4">
@@ -99,36 +144,41 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
+          {/* Education Section */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-6"
           >
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="p-6 h-full hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-0">
-                    <div className="text-blue-600 mb-4">
-                      <feature.icon size={32} />
-                    </div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      {feature.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Education</h3>
+            <div className="space-y-6">
+              {education.map((edu, index) => (
+                <motion.div
+                  key={edu.school}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-0 flex items-center space-x-4">
+                      <div className="flex-shrink-0">
+                        <GraduationCap className="text-blue-600" size={32} />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900">
+                          {edu.school}
+                        </h4>
+                        <p className="text-gray-600 text-sm">
+                          {edu.period}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
