@@ -47,101 +47,89 @@ const HeroSection = () => {
     },
   ];
 
-  // Professional role photos with placeholders
-  const professionalPhotos = [
-    {
-      id: 1,
-      title: "Mechatronics Engineering",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-      description: "Circuit design and robotics"
-    },
-    {
-      id: 2,
-      title: "Embedded Systems",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-      description: "Hardware-software integration"
-    },
-    {
-      id: 3,
-      title: "Mobile App Development",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-      description: "Cross-platform applications"
-    },
-    {
-      id: 4,
-      title: "Mechanical Design",
-      image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
-      description: "3D modeling and CAD"
-    },
-    {
-      id: 5,
-      title: "Multimedia Editing",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-      description: "Video and content creation"
-    }
+  // Color zones for the gradient background
+  const colorZones = [
+    { color: "from-purple-600 to-purple-800", position: "top-left" },
+    { color: "from-blue-600 to-blue-800", position: "top-center" },
+    { color: "from-cyan-500 to-cyan-700", position: "top-right" },
+    { color: "from-indigo-600 to-indigo-800", position: "center-left" },
+    { color: "from-violet-600 to-violet-800", position: "center" },
+    { color: "from-blue-500 to-blue-700", position: "center-right" },
+    { color: "from-purple-500 to-purple-700", position: "bottom-left" },
+    { color: "from-cyan-600 to-cyan-800", position: "bottom-center" },
+    { color: "from-indigo-500 to-indigo-700", position: "bottom-right" }
   ];
+
+  const getPositionClasses = (position: string) => {
+    switch (position) {
+      case "top-left": return "top-0 left-0";
+      case "top-center": return "top-0 left-1/3";
+      case "top-right": return "top-0 right-0";
+      case "center-left": return "top-1/3 left-0";
+      case "center": return "top-1/3 left-1/3";
+      case "center-right": return "top-1/3 right-0";
+      case "bottom-left": return "bottom-0 left-0";
+      case "bottom-center": return "bottom-0 left-1/3";
+      case "bottom-right": return "bottom-0 right-0";
+      default: return "top-0 left-0";
+    }
+  };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Photo Gallery Background */}
+      {/* Colorful Gradient Background */}
       <div className="absolute inset-0 -z-10">
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/90 to-indigo-900/95 z-10"></div>
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900"></div>
         
-        {/* Photo Grid */}
-        <div className="absolute inset-0 grid grid-cols-5 gap-2 p-4">
-          {professionalPhotos.map((photo, index) => (
+        {/* Overlapping color zones */}
+        <div className="absolute inset-0">
+          {colorZones.map((zone, index) => (
             <motion.div
-              key={photo.id}
-              className="relative group overflow-hidden rounded-lg"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
+              key={index}
+              className={`absolute w-1/3 h-1/3 bg-gradient-to-br ${zone.color} rounded-full blur-3xl opacity-20 ${getPositionClasses(zone.position)}`}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 0.3 }}
               transition={{ 
-                duration: 0.8, 
+                duration: 2, 
                 delay: index * 0.2,
                 ease: "easeOut"
               }}
-            >
-              {/* Photo */}
-              <motion.img
-                src={photo.image}
-                alt={photo.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                whileHover={{ scale: 1.05 }}
-              />
-              
-              {/* Overlay with title */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-2 left-2 text-white">
-                  <h3 className="text-sm font-semibold">{photo.title}</h3>
-                  <p className="text-xs opacity-80">{photo.description}</p>
-                </div>
-              </div>
-
-              {/* Animated border */}
-              <motion.div
-                className="absolute inset-0 border-2 border-cyan-400/0 group-hover:border-cyan-400/50 transition-colors duration-300"
-                whileHover={{ 
-                  boxShadow: "0 0 20px rgba(6, 182, 212, 0.3)" 
-                }}
-              />
-            </motion.div>
+            />
           ))}
         </div>
 
-        {/* Subtle floating particles for ambiance */}
-        {[...Array(15)].map((_, i) => (
+        {/* Animated gradient overlay */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-cyan-600/20"
+          animate={{
+            background: [
+              "linear-gradient(45deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2))",
+              "linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2), rgba(147, 51, 234, 0.2))",
+              "linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2))",
+              "linear-gradient(45deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2))"
+            ]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Floating particles for ambiance */}
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-cyan-400/20 rounded-full"
+            className="absolute w-2 h-2 bg-white/30 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
               y: [0, -50, 0],
-              opacity: [0.2, 0.6, 0.2],
-              scale: [0.5, 1, 0.5]
+              opacity: [0.2, 0.8, 0.2],
+              scale: [0.5, 1.2, 0.5]
             }}
             transition={{
               duration: Math.random() * 4 + 3,
@@ -176,33 +164,33 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">
               Ahmed Rashad
             </span>
           </motion.h1>
 
           <motion.div
-            className="text-xl md:text-2xl text-white/80 mb-8 max-w-5xl mx-auto"
+            className="text-xl md:text-2xl text-white/90 mb-8 max-w-5xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <p className="leading-relaxed font-light">
-              <span className="text-cyan-400 font-semibold">Mechatronics Engineer</span>{" "}
+              <span className="text-cyan-300 font-semibold">Mechatronics Engineer</span>{" "}
               |{" "}
-              <span className="text-blue-400 font-semibold">Embedded Systems Developer</span>{" "}
+              <span className="text-blue-300 font-semibold">Embedded Systems Developer</span>{" "}
               |{" "}
-              <span className="text-purple-400 font-semibold">Mobile App Creator</span>
+              <span className="text-purple-300 font-semibold">Mobile App Creator</span>
             </p>
             <p className="leading-relaxed font-light mt-2">
-              <span className="text-indigo-400 font-semibold">Mechanical Designer</span>{" "}
+              <span className="text-indigo-300 font-semibold">Mechanical Designer</span>{" "}
               |{" "}
-              <span className="text-violet-400 font-semibold">Multimedia Editor</span>
+              <span className="text-violet-300 font-semibold">Multimedia Editor</span>
             </p>
           </motion.div>
 
           <motion.p
-            className="text-lg md:text-xl text-white/70 mb-12 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-white/80 mb-12 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -219,7 +207,7 @@ const HeroSection = () => {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-12 py-7 text-lg rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 border-0"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-12 py-7 text-lg rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 border-0"
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
             >
               <span className="mr-2">🚀</span>
@@ -228,7 +216,7 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-12 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-white/5 backdrop-blur-sm"
+              className="border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 px-12 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-white/5 backdrop-blur-sm"
             >
               <Download className="mr-2" size={20} />
               Download CV
@@ -272,7 +260,7 @@ const HeroSection = () => {
             onClick={scrollToAbout}
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2.5, repeat: Infinity }}
-            className="flex flex-col items-center text-white/60 hover:text-white transition-colors duration-300 group"
+            className="flex flex-col items-center text-white/70 hover:text-white transition-colors duration-300 group"
           >
             <span className="text-sm font-medium mb-2 opacity-75 group-hover:opacity-100">Scroll Down</span>
             <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
