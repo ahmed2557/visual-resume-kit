@@ -47,101 +47,81 @@ const HeroSection = () => {
     },
   ];
 
-  // Color zones for the gradient background
-  const colorZones = [
-    { color: "from-purple-600 to-purple-800", position: "top-left" },
-    { color: "from-blue-600 to-blue-800", position: "top-center" },
-    { color: "from-cyan-500 to-cyan-700", position: "top-right" },
-    { color: "from-indigo-600 to-indigo-800", position: "center-left" },
-    { color: "from-violet-600 to-violet-800", position: "center" },
-    { color: "from-blue-500 to-blue-700", position: "center-right" },
-    { color: "from-purple-500 to-purple-700", position: "bottom-left" },
-    { color: "from-cyan-600 to-cyan-800", position: "bottom-center" },
-    { color: "from-indigo-500 to-indigo-700", position: "bottom-right" }
-  ];
-
-  const getPositionClasses = (position: string) => {
-    switch (position) {
-      case "top-left": return "top-0 left-0";
-      case "top-center": return "top-0 left-1/3";
-      case "top-right": return "top-0 right-0";
-      case "center-left": return "top-1/3 left-0";
-      case "center": return "top-1/3 left-1/3";
-      case "center-right": return "top-1/3 right-0";
-      case "bottom-left": return "bottom-0 left-0";
-      case "bottom-center": return "bottom-0 left-1/3";
-      case "bottom-right": return "bottom-0 right-0";
-      default: return "top-0 left-0";
-    }
-  };
-
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Colorful Gradient Background */}
-      <div className="absolute inset-0 -z-10">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900"></div>
+      {/* Fixed Background with Better Visibility */}
+      <div className="absolute inset-0">
+        {/* Base solid background */}
+        <div className="absolute inset-0 bg-slate-900"></div>
         
-        {/* Overlapping color zones */}
+        {/* Main gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-800/80 via-blue-800/80 to-cyan-700/80"></div>
+        
+        {/* Animated color zones */}
         <div className="absolute inset-0">
-          {colorZones.map((zone, index) => (
-            <motion.div
-              key={index}
-              className={`absolute w-1/3 h-1/3 bg-gradient-to-br ${zone.color} rounded-full blur-3xl opacity-20 ${getPositionClasses(zone.position)}`}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.3 }}
-              transition={{ 
-                duration: 2, 
-                delay: index * 0.2,
-                ease: "easeOut"
-              }}
-            />
-          ))}
+          <motion.div
+            className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-600/30 to-purple-800/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-blue-600/30 to-blue-800/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, -80, 0],
+              y: [0, 80, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-cyan-600/30 to-cyan-800/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, 60, 0],
+              y: [0, -60, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
+            }}
+          />
         </div>
 
-        {/* Animated gradient overlay */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-cyan-600/20"
-          animate={{
-            background: [
-              "linear-gradient(45deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2))",
-              "linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2), rgba(147, 51, 234, 0.2))",
-              "linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2))",
-              "linear-gradient(45deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2))"
-            ]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-
-        {/* Floating particles for ambiance */}
-        {[...Array(20)].map((_, i) => (
+        {/* Floating particles */}
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-white/30 rounded-full"
+            className="absolute w-1 h-1 bg-white/40 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -50, 0],
+              y: [0, -30, 0],
               opacity: [0.2, 0.8, 0.2],
-              scale: [0.5, 1.2, 0.5]
             }}
             transition={{
-              duration: Math.random() * 4 + 3,
+              duration: Math.random() * 3 + 2,
               repeat: Infinity,
               delay: Math.random() * 2,
-              ease: "easeInOut"
             }}
           />
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-20">
+      <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -152,45 +132,48 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 mb-8 shadow-lg"
+            className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 mb-8 shadow-lg"
           >
-            <span className="text-sm font-medium text-white/90">👋 Welcome to my portfolio</span>
+            <span className="text-sm font-medium text-white">👋 Welcome to my portfolio</span>
           </motion.div>
 
+          {/* Main Title */}
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">
+            <span className="text-white drop-shadow-lg">Hi, I'm </span>
+            <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent drop-shadow-lg">
               Ahmed Rashad
             </span>
           </motion.h1>
 
+          {/* Professional Titles */}
           <motion.div
-            className="text-xl md:text-2xl text-white/90 mb-8 max-w-5xl mx-auto"
+            className="text-xl md:text-2xl mb-8 max-w-5xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <p className="leading-relaxed font-light">
-              <span className="text-cyan-300 font-semibold">Mechatronics Engineer</span>{" "}
-              |{" "}
-              <span className="text-blue-300 font-semibold">Embedded Systems Developer</span>{" "}
-              |{" "}
-              <span className="text-purple-300 font-semibold">Mobile App Creator</span>
+            <p className="leading-relaxed font-light text-white drop-shadow-md">
+              <span className="text-cyan-200 font-semibold">Mechatronics Engineer</span>
+              <span className="text-white/80"> | </span>
+              <span className="text-blue-200 font-semibold">Embedded Systems Developer</span>
+              <span className="text-white/80"> | </span>
+              <span className="text-purple-200 font-semibold">Mobile App Creator</span>
             </p>
-            <p className="leading-relaxed font-light mt-2">
-              <span className="text-indigo-300 font-semibold">Mechanical Designer</span>{" "}
-              |{" "}
-              <span className="text-violet-300 font-semibold">Multimedia Editor</span>
+            <p className="leading-relaxed font-light mt-2 text-white drop-shadow-md">
+              <span className="text-indigo-200 font-semibold">Mechanical Designer</span>
+              <span className="text-white/80"> | </span>
+              <span className="text-violet-200 font-semibold">Multimedia Editor</span>
             </p>
           </motion.div>
 
+          {/* Description */}
           <motion.p
-            className="text-lg md:text-xl text-white/80 mb-12 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed drop-shadow-sm"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -199,6 +182,7 @@ const HeroSection = () => {
             that blend electronics, mechanical design, and software development.
           </motion.p>
 
+          {/* Action Buttons */}
           <motion.div
             className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -216,14 +200,14 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 px-12 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-white/5 backdrop-blur-sm"
+              className="border-2 border-white/50 text-white hover:bg-white/10 hover:border-white/70 px-12 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-white/10 backdrop-blur-sm"
             >
               <Download className="mr-2" size={20} />
               Download CV
             </Button>
           </motion.div>
 
-          {/* Enhanced Social Links */}
+          {/* Social Links */}
           <motion.div
             className="flex justify-center items-center space-x-8"
             initial={{ opacity: 0, y: 30 }}
@@ -241,7 +225,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
-                className="p-4 bg-white/10 backdrop-blur-lg rounded-full text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/20"
+                className="p-4 bg-white/20 backdrop-blur-sm rounded-full text-white/90 hover:text-white hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/30"
               >
                 {link.icon}
               </motion.a>
@@ -249,7 +233,7 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Enhanced Scroll Indicator */}
+        {/* Scroll Indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0 }}
@@ -260,9 +244,9 @@ const HeroSection = () => {
             onClick={scrollToAbout}
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2.5, repeat: Infinity }}
-            className="flex flex-col items-center text-white/70 hover:text-white transition-colors duration-300 group"
+            className="flex flex-col items-center text-white/80 hover:text-white transition-colors duration-300 group"
           >
-            <span className="text-sm font-medium mb-2 opacity-75 group-hover:opacity-100">Scroll Down</span>
+            <span className="text-sm font-medium mb-2 opacity-80 group-hover:opacity-100 drop-shadow-sm">Scroll Down</span>
             <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
               <motion.div 
                 className="w-1 h-3 bg-current rounded-full mt-2"
