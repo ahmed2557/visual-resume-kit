@@ -47,214 +47,104 @@ const HeroSection = () => {
     },
   ];
 
+  // Professional role photos with placeholders
+  const professionalPhotos = [
+    {
+      id: 1,
+      title: "Mechatronics Engineering",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+      description: "Circuit design and robotics"
+    },
+    {
+      id: 2,
+      title: "Embedded Systems",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+      description: "Hardware-software integration"
+    },
+    {
+      id: 3,
+      title: "Mobile App Development",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      description: "Cross-platform applications"
+    },
+    {
+      id: 4,
+      title: "Mechanical Design",
+      image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
+      description: "3D modeling and CAD"
+    },
+    {
+      id: 5,
+      title: "Multimedia Editing",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
+      description: "Video and content creation"
+    }
+  ];
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Enhanced Animated Background with Fixed Colors */}
+      {/* Photo Gallery Background */}
       <div className="absolute inset-0 -z-10">
-        {/* Primary Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"></div>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/90 to-indigo-900/95 z-10"></div>
         
-        {/* Secondary Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/50 via-transparent to-cyan-900/30"></div>
-        
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(rgba(99, 179, 237, 0.3) 1px, transparent 1px),
-                               linear-gradient(90deg, rgba(99, 179, 237, 0.3) 1px, transparent 1px)`,
-              backgroundSize: '60px 60px'
-            }}
-            animate={{
-              backgroundPosition: ['0px 0px', '60px 60px']
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
-          />
+        {/* Photo Grid */}
+        <div className="absolute inset-0 grid grid-cols-5 gap-2 p-4">
+          {professionalPhotos.map((photo, index) => (
+            <motion.div
+              key={photo.id}
+              className="relative group overflow-hidden rounded-lg"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.2,
+                ease: "easeOut"
+              }}
+            >
+              {/* Photo */}
+              <motion.img
+                src={photo.image}
+                alt={photo.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                whileHover={{ scale: 1.05 }}
+              />
+              
+              {/* Overlay with title */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-2 left-2 text-white">
+                  <h3 className="text-sm font-semibold">{photo.title}</h3>
+                  <p className="text-xs opacity-80">{photo.description}</p>
+                </div>
+              </div>
+
+              {/* Animated border */}
+              <motion.div
+                className="absolute inset-0 border-2 border-cyan-400/0 group-hover:border-cyan-400/50 transition-colors duration-300"
+                whileHover={{ 
+                  boxShadow: "0 0 20px rgba(6, 182, 212, 0.3)" 
+                }}
+              />
+            </motion.div>
+          ))}
         </div>
 
-        {/* Floating Geometric Elements */}
-        <motion.div
-          className="absolute top-20 left-20 w-40 h-40 border-2 border-cyan-400/20 rotate-45 rounded-lg"
-          animate={{ 
-            rotate: [45, 405],
-            scale: [1, 1.1, 1],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
-        <motion.div
-          className="absolute bottom-32 right-32 w-32 h-32 border-2 border-purple-400/25 rounded-full"
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.5, 0.2],
-            rotate: [0, 360]
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        <motion.div
-          className="absolute top-1/2 left-1/4 w-24 h-24 border border-indigo-400/30 rotate-12"
-          animate={{
-            rotate: [12, 372],
-            y: [0, -30, 0],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Enhanced Glowing Orbs */}
-        <motion.div
-          className="absolute top-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-cyan-500/15 to-blue-600/10 rounded-full filter blur-3xl"
-          animate={{
-            x: [0, 120, -60, 0],
-            y: [0, -80, 40, 0],
-            scale: [1, 1.2, 0.8, 1]
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        <motion.div
-          className="absolute bottom-1/3 left-1/3 w-64 h-64 bg-gradient-to-r from-purple-600/15 to-indigo-500/10 rounded-full filter blur-3xl"
-          animate={{
-            x: [0, -100, 80, 0],
-            y: [0, 70, -40, 0],
-            scale: [1, 1.4, 0.9, 1]
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3
-          }}
-        />
-
-        <motion.div
-          className="absolute top-2/3 right-1/4 w-48 h-48 bg-gradient-to-r from-blue-500/10 to-cyan-400/15 rounded-full filter blur-2xl"
-          animate={{
-            x: [0, 60, -90, 0],
-            y: [0, -50, 70, 0],
-            scale: [0.8, 1.3, 1, 0.8]
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 6
-          }}
-        />
-
-        {/* Tech Circuit Lines with Better Colors */}
-        <svg className="absolute inset-0 w-full h-full opacity-15" xmlns="http://www.w3.org/2000/svg">
-          <motion.path
-            d="M100,200 Q400,100 800,300 T1400,400"
-            stroke="url(#gradient1)"
-            strokeWidth="3"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 6, repeat: Infinity, repeatType: "loop" }}
-          />
-          <motion.path
-            d="M200,500 Q600,300 1000,600 T1600,500"
-            stroke="url(#gradient2)"
-            strokeWidth="2"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 8, repeat: Infinity, delay: 2, repeatType: "loop" }}
-          />
-          <motion.path
-            d="M50,400 Q350,200 700,500 T1200,300"
-            stroke="url(#gradient3)"
-            strokeWidth="2"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 10, repeat: Infinity, delay: 4, repeatType: "loop" }}
-          />
-          <defs>
-            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0"/>
-              <stop offset="50%" stopColor="#0ea5e9" stopOpacity="0.8"/>
-              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0"/>
-            </linearGradient>
-            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0"/>
-              <stop offset="50%" stopColor="#a855f7" stopOpacity="0.7"/>
-              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0"/>
-            </linearGradient>
-            <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0"/>
-              <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.6"/>
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0"/>
-            </linearGradient>
-          </defs>
-        </svg>
-
-        {/* Enhanced Floating Particles */}
-        {[...Array(25)].map((_, i) => (
+        {/* Subtle floating particles for ambiance */}
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute w-3 h-3 rounded-full ${
-              i % 3 === 0 ? 'bg-cyan-400/40' : 
-              i % 3 === 1 ? 'bg-blue-400/40' : 'bg-purple-400/40'
-            }`}
+            className="absolute w-2 h-2 bg-cyan-400/20 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -150, 0],
-              opacity: [0, 0.8, 0],
-              scale: [0, 1.2, 0],
-              x: [0, Math.random() * 50 - 25, 0]
-            }}
-            transition={{
-              duration: Math.random() * 4 + 3,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-
-        {/* Starfield Effect */}
-        {[...Array(50)].map((_, i) => (
-          <motion.div
-            key={`star-${i}`}
-            className="absolute w-1 h-1 bg-white/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              opacity: [0.3, 1, 0.3],
+              y: [0, -50, 0],
+              opacity: [0.2, 0.6, 0.2],
               scale: [0.5, 1, 0.5]
             }}
             transition={{
-              duration: Math.random() * 3 + 2,
+              duration: Math.random() * 4 + 3,
               repeat: Infinity,
               delay: Math.random() * 2,
               ease: "easeInOut"
@@ -263,7 +153,7 @@ const HeroSection = () => {
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
