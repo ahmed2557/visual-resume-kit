@@ -132,7 +132,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 mb-8 shadow-lg"
+            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 backdrop-blur-sm rounded-full border border-white/30 mb-8 shadow-lg"
           >
             <span className="text-sm font-medium text-white">👋 Welcome to my portfolio</span>
           </motion.div>
@@ -200,7 +200,7 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-white/50 text-white hover:bg-white/10 hover:border-white/70 px-12 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-white/10 backdrop-blur-sm"
+              className="border-2 border-white/50 text-white hover:bg-white/10 hover:border-white/70 px-12 py-7 text-lg rounded-full transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-sm"
             >
               <Download className="mr-2" size={20} />
               Download CV
@@ -209,7 +209,7 @@ const HeroSection = () => {
 
           {/* Social Links */}
           <motion.div
-            className="flex justify-center items-center space-x-8"
+            className="flex justify-center items-center space-x-8 mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
@@ -225,7 +225,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
-                className="p-4 bg-white/20 backdrop-blur-sm rounded-full text-white/90 hover:text-white hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/30"
+                className="p-4 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 backdrop-blur-sm rounded-full text-white/90 hover:text-white hover:bg-gradient-to-r hover:from-purple-500/40 hover:to-cyan-500/40 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/30"
               >
                 {link.icon}
               </motion.a>

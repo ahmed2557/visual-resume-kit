@@ -20,7 +20,7 @@ const AboutSection = () => {
     {
       category: "🔌 Embedded Systems & Robotics",
       icon: <Cpu className="w-8 h-8" />,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-purple-500 to-cyan-500",
       projects: [
         "Smart Home System with ESP32 & Flutter app",
         "Maze-Solving Robot with IR sensors",
@@ -31,7 +31,7 @@ const AboutSection = () => {
     {
       category: "⚙️ Mechanical & Circuit Design", 
       icon: <Settings className="w-8 h-8" />,
-      color: "from-purple-500 to-indigo-500",
+      color: "from-blue-500 to-purple-500",
       projects: [
         "Gear assemblies in Autodesk Inventor",
         "PCB design in KiCad",
@@ -42,7 +42,7 @@ const AboutSection = () => {
     {
       category: "🚗 Automotive Repair & Customization",
       icon: <Car className="w-8 h-8" />,
-      color: "from-red-500 to-orange-500", 
+      color: "from-cyan-500 to-blue-500", 
       projects: [
         "Toyota KP30 Android screen installation",
         "Peugeot 405 GL maintenance",
@@ -53,7 +53,7 @@ const AboutSection = () => {
     {
       category: "💻 PC, Laptop & Mobile Repairs",
       icon: <Wrench className="w-8 h-8" />,
-      color: "from-green-500 to-emerald-500",
+      color: "from-purple-500 to-blue-500",
       projects: [
         "Hardware diagnostics and repair",
         "Soldering and component replacement", 
@@ -64,7 +64,7 @@ const AboutSection = () => {
     {
       category: "📱 Mobile App Development",
       icon: <Smartphone className="w-8 h-8" />,
-      color: "from-pink-500 to-rose-500",
+      color: "from-cyan-500 to-purple-500",
       projects: [
         "Flutter smart home controller",
         "Real-time hardware integration",
@@ -75,7 +75,7 @@ const AboutSection = () => {
     {
       category: "👨‍🏫 Education & Team Leadership",
       icon: <GraduationCap className="w-8 h-8" />,
-      color: "from-yellow-500 to-amber-500",
+      color: "from-blue-500 to-cyan-500",
       projects: [
         "Front-end web training workshops",
         "HTML/CSS teaching",
@@ -86,7 +86,7 @@ const AboutSection = () => {
     {
       category: "🎞 Video & Photo Editing",
       icon: <Video className="w-8 h-8" />,
-      color: "from-violet-500 to-purple-500",
+      color: "from-purple-500 to-cyan-500",
       projects: [
         "Adobe Premiere Pro editing",
         "Clipchamp video production",
@@ -141,20 +141,20 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            <Card className="h-full hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-white to-gray-50">
+            <Card className="h-full hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-sm">
               <CardContent className="p-8">
                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${skill.color} flex items-center justify-center text-white mb-6 shadow-lg`}>
                   {skill.icon}
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-white mb-4">
                   {skill.category}
                 </h3>
                 
                 <ul className="space-y-2">
                   {skill.projects.map((project, i) => (
-                    <li key={i} className="text-gray-600 text-sm flex items-start">
-                      <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <li key={i} className="text-white/80 text-sm flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                       {project}
                     </li>
                   ))}
@@ -174,10 +174,10 @@ const AboutSection = () => {
         className="mb-16"
       >
         <div className="text-center mb-12">
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent mb-4">
             🧰 Tools I Use
           </h3>
-          <div className="w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+          <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -189,17 +189,17 @@ const AboutSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full border-0 bg-gradient-to-br from-gray-50 to-white shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card className="h-full border-0 bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
                 <CardContent className="p-6">
-                  <h4 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                    <span className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
+                  <h4 className="text-lg font-bold text-white mb-4 flex items-center">
+                    <span className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mr-3"></span>
                     {toolCategory.category}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {toolCategory.items.map((tool, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200"
+                        className="px-3 py-1 bg-white/10 text-white/90 text-sm rounded-full border border-white/20 shadow-sm hover:shadow-md hover:bg-white/20 transition-all duration-200"
                       >
                         {tool}
                       </span>
@@ -220,16 +220,16 @@ const AboutSection = () => {
         viewport={{ once: true }}
         className="text-center"
       >
-        <Card className="max-w-4xl mx-auto border-0 bg-gradient-to-r from-blue-50 to-purple-50 shadow-xl">
+        <Card className="max-w-4xl mx-auto border-0 bg-gradient-to-r from-slate-800/90 to-slate-900/90 backdrop-blur-sm shadow-xl">
           <CardContent className="p-12">
             <div className="text-6xl mb-6">💡</div>
-            <blockquote className="text-xl md:text-2xl text-gray-700 font-light italic leading-relaxed">
+            <blockquote className="text-xl md:text-2xl text-white/90 font-light italic leading-relaxed">
               "I believe technology should make life easier and more connected. 
               Every project I work on aims to bridge the gap between complex engineering 
               and practical, user-friendly solutions."
             </blockquote>
             <div className="mt-6">
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto"></div>
             </div>
           </CardContent>
         </Card>

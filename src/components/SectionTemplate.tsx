@@ -26,8 +26,8 @@ const SectionTemplate = ({
       id={id} 
       className={`py-24 relative ${className}`}
     >
-      {/* Section background overlay for better content visibility */}
-      <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+      {/* Section background overlay for better content visibility - smoother transition */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-800/80 via-slate-900/80 to-slate-900/90 backdrop-blur-sm"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
