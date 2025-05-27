@@ -11,12 +11,87 @@ import Navigation from "@/components/Navigation";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <Navigation />
-      <HeroSection />
-      <AboutSection />
-      <ProjectsSection />
-      <ContactSection />
+    <div className="min-h-screen">
+      {/* Global Background matching HeroSection */}
+      <div className="fixed inset-0 z-0">
+        {/* Base solid background */}
+        <div className="absolute inset-0 bg-slate-900"></div>
+        
+        {/* Main gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-800/80 via-blue-800/80 to-cyan-700/80"></div>
+        
+        {/* Animated color zones */}
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-600/30 to-purple-800/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-blue-600/30 to-blue-800/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, -80, 0],
+              y: [0, 80, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-cyan-600/30 to-cyan-800/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, 60, 0],
+              y: [0, -60, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
+            }}
+          />
+        </div>
+
+        {/* Floating particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/40 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: Math.random() * 3 + 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Content with higher z-index */}
+      <div className="relative z-10">
+        <Navigation />
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <ContactSection />
+      </div>
     </div>
   );
 };
