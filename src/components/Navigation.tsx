@@ -40,7 +40,7 @@ const Navigation = () => {
     y: 0
   }} className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-slate-900/95 backdrop-blur-lg shadow-lg border-b border-white/10" : "bg-transparent"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-4 bg-transparent">
           <motion.div whileHover={{
           scale: 1.05
         }} className="text-2xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent drop-shadow-lg">
