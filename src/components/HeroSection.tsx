@@ -49,16 +49,6 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Welcome Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-md rounded-full border border-white/20 mb-8 shadow-lg"
-          >
-            <span className="text-sm font-medium text-white">👋 Welcome to my portfolio</span>
-          </motion.div>
-
           {/* Main Title */}
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"

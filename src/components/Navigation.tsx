@@ -38,17 +38,29 @@ const Navigation = () => {
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled 
           ? "bg-slate-800/95 backdrop-blur-lg shadow-lg border-b border-slate-700/50" 
-          : "bg-slate-900/90 backdrop-blur-sm"
+          : "bg-gradient-to-br from-purple-800/80 via-blue-800/80 to-cyan-700/80 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <motion.div 
-            whileHover={{ scale: 1.05 }} 
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-          >
-            Ahmed
-          </motion.div>
+          <div className="flex items-center space-x-4">
+            <motion.div 
+              whileHover={{ scale: 1.05 }} 
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+            >
+              Ahmed
+            </motion.div>
+            
+            {/* Welcome Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="hidden sm:flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+            >
+              <span className="text-sm font-medium text-white">👋 Welcome to my portfolio</span>
+            </motion.div>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
