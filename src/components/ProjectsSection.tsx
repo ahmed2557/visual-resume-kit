@@ -133,10 +133,10 @@ const ProjectsSection = () => {
         className="text-center mb-16"
       >
         <div className="text-5xl mb-4">{emoji}</div>
-        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent mb-4 drop-shadow-lg">
           {title}
         </h3>
-        <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+        <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto rounded-full"></div>
       </motion.div>
       {children}
     </div>

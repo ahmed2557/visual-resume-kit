@@ -28,13 +28,15 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
+      className="will-change-transform"
     >
-      <Card className="overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-0 bg-white">
+      <Card className="overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-0 bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-sm">
         <div className="relative overflow-hidden">
           <img
             src={project.image}
             alt={project.title}
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+            loading="lazy"
           />
           
           {/* Overlay */}
@@ -57,7 +59,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           {/* Certification badge */}
           {isCertification && (
             <div className="absolute top-4 right-4">
-              <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
                 <Award className="text-white" size={20} />
               </div>
             </div>
@@ -65,18 +67,18 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
           {/* Type badge */}
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-800 text-xs rounded-full font-semibold shadow-lg">
+            <span className="px-3 py-1 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs rounded-full font-semibold shadow-lg border border-white/20">
               {project.type}
             </span>
           </div>
         </div>
 
         <CardContent className="p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+          <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors duration-300">
             {project.title}
           </h3>
           
-          <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+          <p className="text-white/80 mb-6 text-sm leading-relaxed">
             {project.description}
           </p>
 
@@ -86,7 +88,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               {project.technologies.map((tech: string) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 text-xs rounded-full font-medium border border-blue-100"
+                  className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 text-cyan-200 text-xs rounded-full font-medium border border-cyan-400/30 backdrop-blur-sm"
                 >
                   {tech}
                 </span>
@@ -96,8 +98,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
           {/* Note */}
           {project.note && (
-            <div className="bg-blue-50 border-l-4 border-blue-400 p-3 mb-6 rounded-r">
-              <p className="text-blue-700 text-sm italic">{project.note}</p>
+            <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-l-4 border-cyan-400 p-3 mb-6 rounded-r backdrop-blur-sm">
+              <p className="text-cyan-200 text-sm italic">{project.note}</p>
             </div>
           )}
 
@@ -105,7 +107,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           <Button
             variant="outline"
             size="lg"
-            className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300"
+            className="w-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-white border-cyan-400/50 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400 transition-all duration-300 backdrop-blur-sm"
             onClick={() => window.open(project.liveUrl || project.pdfUrl, "_blank")}
           >
             <ExternalLink size={16} className="mr-2" />

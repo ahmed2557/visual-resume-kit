@@ -12,18 +12,18 @@ import Navigation from "@/components/Navigation";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* Global Background matching HeroSection */}
-      <div className="fixed inset-0 z-0">
+      {/* Optimized Global Background */}
+      <div className="fixed inset-0 z-0 will-change-transform">
         {/* Base solid background */}
         <div className="absolute inset-0 bg-slate-900"></div>
         
         {/* Main gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-800/80 via-blue-800/80 to-cyan-700/80"></div>
         
-        {/* Animated color zones */}
+        {/* Optimized animated color zones */}
         <div className="absolute inset-0">
           <motion.div
-            className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-600/30 to-purple-800/30 rounded-full blur-3xl"
+            className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-600/30 to-purple-800/30 rounded-full blur-3xl will-change-transform"
             animate={{
               x: [0, 100, 0],
               y: [0, 50, 0],
@@ -35,7 +35,7 @@ const Index = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-blue-600/30 to-blue-800/30 rounded-full blur-3xl"
+            className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-blue-600/30 to-blue-800/30 rounded-full blur-3xl will-change-transform"
             animate={{
               x: [0, -80, 0],
               y: [0, 80, 0],
@@ -48,7 +48,7 @@ const Index = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-cyan-600/30 to-cyan-800/30 rounded-full blur-3xl"
+            className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-cyan-600/30 to-cyan-800/30 rounded-full blur-3xl will-change-transform"
             animate={{
               x: [0, 60, 0],
               y: [0, -60, 0],
@@ -62,11 +62,11 @@ const Index = () => {
           />
         </div>
 
-        {/* Floating particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* Optimized floating particles */}
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white/40 rounded-full"
+            className="absolute w-1 h-1 bg-white/40 rounded-full will-change-transform"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -84,8 +84,8 @@ const Index = () => {
         ))}
       </div>
 
-      {/* Content with higher z-index */}
-      <div className="relative z-10">
+      {/* Content with higher z-index and optimized rendering */}
+      <div className="relative z-10 will-change-scroll">
         <Navigation />
         <HeroSection />
         <AboutSection />
