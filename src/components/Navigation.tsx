@@ -37,7 +37,7 @@ const Navigation = () => {
       animate={{ y: 0 }} 
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled 
-          ? "bg-slate-900/20 backdrop-blur-md border-b border-white/10" 
+          ? "bg-slate-900/10 backdrop-blur-xl border-b border-white/10" 
           : "bg-transparent"
       }`}
     >
@@ -57,7 +57,7 @@ const Navigation = () => {
                 key={item.label}
                 whileHover={{ y: -2 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-white/90 hover:text-cyan-300 transition-colors duration-200 font-medium drop-shadow-sm backdrop-blur-sm px-3 py-2 rounded-lg hover:bg-white/10"
+                className="text-white/90 hover:text-cyan-300 transition-colors duration-200 font-medium drop-shadow-sm backdrop-blur-sm px-4 py-2 rounded-lg hover:bg-white/10"
               >
                 {item.label}
               </motion.button>
@@ -83,7 +83,7 @@ const Navigation = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden pb-4 bg-slate-900/30 backdrop-blur-lg rounded-lg border border-white/10 mt-2"
+            className="md:hidden pb-4 bg-slate-900/20 backdrop-blur-xl rounded-lg border border-white/10 mt-2"
           >
             {navItems.map((item) => (
               <button

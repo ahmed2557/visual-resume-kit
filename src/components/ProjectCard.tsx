@@ -107,7 +107,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           <Button
             variant="outline"
             size="lg"
-            className="w-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-white border-cyan-400/50 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400 transition-all duration-300 backdrop-blur-sm"
+            className="w-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 text-white border-cyan-400/30 hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 backdrop-blur-md"
             onClick={() => window.open(project.liveUrl || project.pdfUrl, "_blank")}
           >
             <ExternalLink size={16} className="mr-2" />
