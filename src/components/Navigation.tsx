@@ -24,20 +24,35 @@ const Navigation = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
+    const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      // Enhanced smooth scrolling with custom timing
-      element.scrollIntoView({ 
-        behavior: "smooth",
-        block: "start"
-      });
-      
-      // Alternative smoother scroll for better control
+      // Enhanced smooth scrolling with custom timing and easing
       const targetPosition = element.offsetTop - 80; // Account for fixed navbar
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth"
-      });
+      
+      // Use a smooth scroll with custom easing
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 800; // Longer duration for smoother effect
+      let start: number | null = null;
+      
+      const smoothScrollStep = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const percentage = Math.min(progress / duration, 1);
+        
+        // Custom easing function for smoother animation
+        const easeInOutCubic = (t: number) => 
+          t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        
+        const easedPercentage = easeInOutCubic(percentage);
+        window.scrollTo(0, startPosition + distance * easedPercentage);
+        
+        if (progress < duration) {
+          requestAnimationFrame(smoothScrollStep);
+        }
+      };
+      
+      requestAnimationFrame(smoothScrollStep);
     }
     setIsMobileMenuOpen(false);
   };

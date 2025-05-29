@@ -5,9 +5,33 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   const scrollToAbout = () => {
-    document.querySelector("#about")?.scrollIntoView({
-      behavior: "smooth"
-    });
+    const element = document.querySelector("#about") as HTMLElement;
+    if (element) {
+      const targetPosition = element.offsetTop - 80;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 1000; // Smooth scroll duration
+      let start: number | null = null;
+      
+      const smoothScrollStep = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const percentage = Math.min(progress / duration, 1);
+        
+        // Enhanced easing for even smoother scroll
+        const easeInOutQuart = (t: number) => 
+          t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+        
+        const easedPercentage = easeInOutQuart(percentage);
+        window.scrollTo(0, startPosition + distance * easedPercentage);
+        
+        if (progress < duration) {
+          requestAnimationFrame(smoothScrollStep);
+        }
+      };
+      
+      requestAnimationFrame(smoothScrollStep);
+    }
   };
 
   const socialLinks = [
@@ -46,9 +70,9 @@ const HeroSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           
-          {/* Left Section - Photo Area */}
+          {/* Left Section - Photo Area - Shifted left by 8px */}
           <motion.div 
-            className="flex justify-center items-center"
+            className="flex justify-center items-center -ml-2"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -167,9 +191,9 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator - Centered but slightly left to avoid Instagram icon */}
+        {/* Scroll Indicator - Moved down by 5px */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-12"
+          className="absolute bottom-3 left-1/2 transform -translate-x-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
