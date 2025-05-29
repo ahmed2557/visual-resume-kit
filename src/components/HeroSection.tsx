@@ -48,7 +48,7 @@ const HeroSection = () => {
           
           {/* Left Section - Photo Area */}
           <motion.div 
-            className="flex justify-center lg:justify-start"
+            className="flex justify-center items-center"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -167,9 +167,9 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator - Moved to Left */}
+        {/* Scroll Indicator - Centered but slightly left to avoid Instagram icon */}
         <motion.div 
-          className="absolute bottom-8 left-8"
+          className="absolute bottom-8 left-1/2 transform -translate-x-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
