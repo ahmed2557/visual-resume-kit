@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,13 @@ const HeroSection = () => {
     const aboutSection = document.querySelector('#about');
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToProjects = () => {
+    const projectsSection = document.querySelector('#projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -23,14 +29,40 @@ const HeroSection = () => {
             className="flex justify-center lg:justify-start order-1 lg:order-1"
           >
             <div className="relative">
-              <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+              {/* Animated gradient lines around photo */}
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: "conic-gradient(from 0deg, #06b6d4, #8b5cf6, #06b6d4)",
+                  padding: "4px",
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="w-full h-full rounded-full bg-slate-900"></div>
+              </motion.div>
+              
+              {/* Second rotating gradient line */}
+              <motion.div
+                className="absolute inset-2 rounded-full"
+                style={{
+                  background: "conic-gradient(from 180deg, #f59e0b, #ec4899, #f59e0b)",
+                  padding: "2px",
+                }}
+                animate={{ rotate: -360 }}
+                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="w-full h-full rounded-full bg-slate-900"></div>
+              </motion.div>
+
+              <div className="relative z-10 w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
                 <img 
                   src="/placeholder.svg" 
                   alt="Ahmed's Profile" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/20 to-purple-500/20"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 z-20"></div>
             </div>
           </motion.div>
 
@@ -81,7 +113,8 @@ const HeroSection = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
+                onClick={scrollToProjects}
+                className="border-2 border-white/30 text-white hover:bg-white/10 bg-transparent font-semibold px-8 py-3 rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-105 hover:border-white/50"
               >
                 View Projects
               </Button>
