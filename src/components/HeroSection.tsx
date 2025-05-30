@@ -29,34 +29,58 @@ const HeroSection = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="flex justify-center lg:justify-start order-1 lg:order-1"
           >
-            <div className="relative">
-              {/* Animated gradient lines around photo */}
-              <motion.div
-                className="absolute inset-0 rounded-full z-10"
-                style={{
-                  background: "conic-gradient(from 0deg, #06b6d4, #8b5cf6, #06b6d4)",
-                  padding: "4px",
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-full h-full rounded-full bg-slate-900"></div>
-              </motion.div>
-              
-              {/* Second rotating gradient line */}
-              <motion.div
-                className="absolute inset-2 rounded-full z-10"
-                style={{
-                  background: "conic-gradient(from 180deg, #f59e0b, #ec4899, #f59e0b)",
-                  padding: "2px",
-                }}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-full h-full rounded-full bg-slate-900"></div>
-              </motion.div>
+            <div className="relative w-80 h-80 md:w-96 md:h-96">
+              {/* Moving border using SVG */}
+              <div className="absolute inset-0 rounded-full">
+                <svg className="w-full h-full" viewBox="0 0 100 100">
+                  <defs>
+                    <linearGradient id="border-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#06b6d4" />
+                      <stop offset="50%" stopColor="#8b5cf6" />
+                      <stop offset="100%" stopColor="#06b6d4" />
+                    </linearGradient>
+                  </defs>
+                  <motion.circle
+                    cx="50"
+                    cy="50"
+                    r="48"
+                    fill="none"
+                    stroke="url(#border-gradient)"
+                    strokeWidth="0.5"
+                    strokeDasharray="20 5"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    style={{ transformOrigin: "50% 50%" }}
+                  />
+                </svg>
+              </div>
 
-              <div className="relative z-20 w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+              {/* Second moving border */}
+              <div className="absolute inset-2 rounded-full">
+                <svg className="w-full h-full" viewBox="0 0 100 100">
+                  <defs>
+                    <linearGradient id="border-gradient-2" x1="100%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#f59e0b" />
+                      <stop offset="50%" stopColor="#ec4899" />
+                      <stop offset="100%" stopColor="#f59e0b" />
+                    </linearGradient>
+                  </defs>
+                  <motion.circle
+                    cx="50"
+                    cy="50"
+                    r="47"
+                    fill="none"
+                    stroke="url(#border-gradient-2)"
+                    strokeWidth="0.4"
+                    strokeDasharray="15 8"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                    style={{ transformOrigin: "50% 50%" }}
+                  />
+                </svg>
+              </div>
+
+              <div className="relative z-20 w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
                 <img 
                   src="/placeholder.svg" 
                   alt="Ahmed's Profile" 
@@ -75,7 +99,7 @@ const HeroSection = () => {
             className="text-center lg:text-left order-2 lg:order-2"
           >
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
@@ -87,7 +111,7 @@ const HeroSection = () => {
             </motion.h1>
 
             <motion.p 
-              className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}

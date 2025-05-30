@@ -42,74 +42,18 @@ const Navigation = () => {
       initial={{ y: -100 }} 
       animate={{ y: 0 }} 
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 w-full z-[100] transition-all duration-300 ease-out ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
         isScrolled 
           ? "backdrop-blur-lg shadow-lg" 
           : ""
       }`}
     >
-      {/* Animated RGB Light Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Moving RGB lights */}
-        <motion.div
-          className="absolute -top-2 -left-10 w-20 h-20 bg-red-500/30 rounded-full blur-xl"
-          animate={{
-            x: [0, 200, 400, 200, 0],
-            y: [0, 10, 0, -10, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div
-          className="absolute -top-2 left-1/3 w-16 h-16 bg-green-500/30 rounded-full blur-xl"
-          animate={{
-            x: [0, 150, 300, 150, 0],
-            y: [0, -5, 0, 5, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 2
-          }}
-        />
-        <motion.div
-          className="absolute -top-2 right-1/4 w-18 h-18 bg-blue-500/30 rounded-full blur-xl"
-          animate={{
-            x: [0, -100, -200, -100, 0],
-            y: [0, 8, 0, -8, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 4
-          }}
-        />
-        <motion.div
-          className="absolute -top-2 -right-10 w-14 h-14 bg-purple-500/30 rounded-full blur-xl"
-          animate={{
-            x: [0, -150, -300, -150, 0],
-            y: [0, -6, 0, 6, 0],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 1
-          }}
-        />
-        
-        {/* Background overlay */}
-        <div className={`absolute inset-0 transition-all duration-300 ${
-          isScrolled 
-            ? "bg-slate-800/90" 
-            : "bg-slate-800/60"
-        }`}></div>
-      </div>
+      {/* Background overlay */}
+      <div className={`absolute inset-0 transition-all duration-300 ${
+        isScrolled 
+          ? "bg-slate-800/80" 
+          : "bg-transparent"
+      }`}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-center py-4">
