@@ -27,13 +27,8 @@ const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      // Stop any ongoing scroll animations
       window.scrollTo(0, window.pageYOffset);
-      
-      // Calculate target position
       const targetPosition = element.offsetTop - 80;
-      
-      // Use native smooth scroll for better performance and no "sticking"
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
@@ -49,22 +44,85 @@ const Navigation = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
         isScrolled 
-          ? "bg-slate-800/95 backdrop-blur-lg shadow-lg border-b border-slate-700/50" 
-          : "bg-transparent"
+          ? "backdrop-blur-lg shadow-lg" 
+          : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Animated RGB Light Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Moving RGB lights */}
+        <motion.div
+          className="absolute -top-2 -left-10 w-20 h-20 bg-red-500/30 rounded-full blur-xl"
+          animate={{
+            x: [0, 200, 400, 200, 0],
+            y: [0, 10, 0, -10, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div
+          className="absolute -top-2 left-1/3 w-16 h-16 bg-green-500/30 rounded-full blur-xl"
+          animate={{
+            x: [0, 150, 300, 150, 0],
+            y: [0, -5, 0, 5, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 2
+          }}
+        />
+        <motion.div
+          className="absolute -top-2 right-1/4 w-18 h-18 bg-blue-500/30 rounded-full blur-xl"
+          animate={{
+            x: [0, -100, -200, -100, 0],
+            y: [0, 8, 0, -8, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 4
+          }}
+        />
+        <motion.div
+          className="absolute -top-2 -right-10 w-14 h-14 bg-purple-500/30 rounded-full blur-xl"
+          animate={{
+            x: [0, -150, -300, -150, 0],
+            y: [0, -6, 0, 6, 0],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 1
+          }}
+        />
+        
+        {/* Background overlay */}
+        <div className={`absolute inset-0 transition-all duration-300 ${
+          isScrolled 
+            ? "bg-slate-800/80" 
+            : "bg-transparent"
+        }`}></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-center py-4">
           <motion.div 
             whileHover={{ scale: 1.05 }} 
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent relative z-10"
           >
             Ahmed
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-8 relative z-10">
             {navItems.map((item) => (
               <motion.button
                 key={item.label}
@@ -72,7 +130,7 @@ const Navigation = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-white hover:text-cyan-400 transition-all duration-300 ease-out font-medium px-4 py-2 rounded-lg hover:bg-slate-700/50"
+                className="text-white hover:text-cyan-400 transition-all duration-300 ease-out font-medium px-4 py-2 rounded-lg hover:bg-white/10 backdrop-blur-sm"
               >
                 {item.label}
               </motion.button>
@@ -80,12 +138,12 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden relative z-10">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-cyan-400 hover:bg-slate-700/50 transition-all duration-200 ease-out"
+              className="text-white hover:text-cyan-400 hover:bg-white/10 transition-all duration-200 ease-out"
             >
               <motion.div
                 animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
@@ -104,7 +162,7 @@ const Navigation = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden pb-4 bg-slate-800/95 backdrop-blur-lg rounded-lg border border-slate-700/50 mt-2"
+            className="md:hidden pb-4 bg-slate-800/90 backdrop-blur-lg rounded-lg border border-slate-700/50 mt-2 relative z-10"
           >
             {navItems.map((item, index) => (
               <motion.button
