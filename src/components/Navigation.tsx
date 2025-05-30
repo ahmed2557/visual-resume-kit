@@ -42,7 +42,7 @@ const Navigation = () => {
       initial={{ y: -100 }} 
       animate={{ y: 0 }} 
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
+      className={`fixed top-0 w-full z-[100] transition-all duration-300 ease-out ${
         isScrolled 
           ? "backdrop-blur-lg shadow-lg" 
           : ""
@@ -106,8 +106,8 @@ const Navigation = () => {
         {/* Background overlay */}
         <div className={`absolute inset-0 transition-all duration-300 ${
           isScrolled 
-            ? "bg-slate-800/80" 
-            : "bg-transparent"
+            ? "bg-slate-800/90" 
+            : "bg-slate-800/60"
         }`}></div>
       </div>
 

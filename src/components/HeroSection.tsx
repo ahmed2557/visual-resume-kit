@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,7 +32,7 @@ const HeroSection = () => {
             <div className="relative">
               {/* Animated gradient lines around photo */}
               <motion.div
-                className="absolute inset-0 rounded-full"
+                className="absolute inset-0 rounded-full z-10"
                 style={{
                   background: "conic-gradient(from 0deg, #06b6d4, #8b5cf6, #06b6d4)",
                   padding: "4px",
@@ -44,7 +45,7 @@ const HeroSection = () => {
               
               {/* Second rotating gradient line */}
               <motion.div
-                className="absolute inset-2 rounded-full"
+                className="absolute inset-2 rounded-full z-10"
                 style={{
                   background: "conic-gradient(from 180deg, #f59e0b, #ec4899, #f59e0b)",
                   padding: "2px",
@@ -55,14 +56,14 @@ const HeroSection = () => {
                 <div className="w-full h-full rounded-full bg-slate-900"></div>
               </motion.div>
 
-              <div className="relative z-10 w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+              <div className="relative z-20 w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
                 <img 
                   src="/placeholder.svg" 
                   alt="Ahmed's Profile" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 z-20"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/10 to-purple-500/10 z-30"></div>
             </div>
           </motion.div>
 
