@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import LanguagesEducationSection from "@/components/LanguagesEducationSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ContactSection from "@/components/ContactsSection";
+import ContactSection from "@/components/ContactSection";
 import Navigation from "@/components/Navigation";
 
 const Index = () => {
