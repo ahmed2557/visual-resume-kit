@@ -7,14 +7,35 @@ import { Button } from "@/components/ui/button";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Set background blur when scrolled
+      setIsScrolled(currentScrollY > 50);
+      
+      // Hide/show navigation based on scroll direction
+      if (currentScrollY === 0) {
+        // Always show at top of page
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide nav
+        setIsVisible(false);
+        setIsMobileMenuOpen(false); // Close mobile menu when hiding
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show nav
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -39,9 +60,9 @@ const Navigation = () => {
 
   return (
     <motion.nav 
-      initial={{ y: -100 }} 
-      animate={{ y: 0 }} 
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      initial={{ y: 0 }} 
+      animate={{ y: isVisible ? 0 : -100 }} 
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className={`fixed top-0 w-full z-[9999] transition-all duration-300 ease-out ${
         isScrolled 
           ? "backdrop-blur-lg shadow-lg" 
