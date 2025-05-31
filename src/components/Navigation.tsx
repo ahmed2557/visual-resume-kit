@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -14,19 +13,24 @@ const Navigation = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
+      console.log('Current scroll:', currentScrollY, 'Last scroll:', lastScrollY, 'Visible:', isVisible);
+      
       // Set background blur when scrolled
       setIsScrolled(currentScrollY > 50);
       
       // Hide/show navigation based on scroll direction
       if (currentScrollY === 0) {
         // Always show at top of page
+        console.log('At top - showing nav');
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down - hide nav
+        console.log('Scrolling down - hiding nav');
         setIsVisible(false);
         setIsMobileMenuOpen(false); // Close mobile menu when hiding
       } else if (currentScrollY < lastScrollY) {
         // Scrolling up - show nav
+        console.log('Scrolling up - showing nav');
         setIsVisible(true);
       }
       
@@ -35,7 +39,7 @@ const Navigation = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isVisible]);
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -68,6 +72,9 @@ const Navigation = () => {
           ? "backdrop-blur-lg shadow-lg" 
           : ""
       }`}
+      style={{
+        transform: `translateY(${isVisible ? '0' : '-100px'})`,
+      }}
     >
       {/* Background overlay */}
       <div className={`absolute inset-0 transition-all duration-300 ${
