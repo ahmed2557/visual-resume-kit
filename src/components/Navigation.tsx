@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -72,9 +73,6 @@ const Navigation = () => {
           ? "backdrop-blur-lg shadow-lg" 
           : ""
       }`}
-      style={{
-        transform: `translateY(${isVisible ? '0' : '-100px'})`,
-      }}
     >
       {/* Background overlay */}
       <div className={`absolute inset-0 transition-all duration-300 ${
