@@ -66,8 +66,15 @@ const Navigation = () => {
   return (
     <motion.nav 
       initial={{ y: 0 }} 
-      animate={{ y: isVisible ? 0 : -100 }} 
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      animate={{ 
+        y: isVisible ? 0 : -100,
+        opacity: isVisible ? 1 : 0
+      }} 
+      transition={{ 
+        duration: 0.3, 
+        ease: "easeInOut",
+        type: "tween"
+      }}
       className={`fixed top-0 w-full z-[9999] transition-all duration-300 ease-out ${
         isScrolled 
           ? "backdrop-blur-lg shadow-lg" 
