@@ -42,7 +42,7 @@ const Navigation = () => {
       initial={{ y: -100 }} 
       animate={{ y: 0 }} 
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
+      className={`fixed top-0 w-full z-[9999] transition-all duration-300 ease-out ${
         isScrolled 
           ? "backdrop-blur-lg shadow-lg" 
           : ""
