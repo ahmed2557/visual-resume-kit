@@ -13,19 +13,29 @@ const Navigation = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
+      console.log('Scroll event:', {
+        currentScrollY,
+        lastScrollY,
+        isVisible,
+        direction: currentScrollY > lastScrollY ? 'down' : 'up'
+      });
+      
       // Set background blur when scrolled
       setIsScrolled(currentScrollY > 50);
       
       // Simplified scroll direction logic
       if (currentScrollY === 0) {
         // At the top - always show
+        console.log('At top - showing nav');
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 80) {
         // Scrolling down and past 80px - hide nav
+        console.log('Scrolling down - hiding nav');
         setIsVisible(false);
         setIsMobileMenuOpen(false);
       } else if (currentScrollY < lastScrollY - 5) {
         // Scrolling up with some threshold - show nav
+        console.log('Scrolling up - showing nav');
         setIsVisible(true);
       }
       
@@ -57,6 +67,8 @@ const Navigation = () => {
     }
     setIsMobileMenuOpen(false);
   };
+
+  console.log('Rendering Navigation with isVisible:', isVisible);
 
   return (
     <nav 
