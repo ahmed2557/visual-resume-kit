@@ -13,39 +13,19 @@ const Navigation = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      console.log('Scroll event:', {
-        currentScrollY,
-        lastScrollY,
-        isVisible,
-        direction: currentScrollY > lastScrollY ? 'down' : 'up'
-      });
-      
-      // Set background blur when scrolled
-      setIsScrolled(currentScrollY > 50);
-      
-      // Simplified scroll direction logic
-      if (currentScrollY === 0) {
-        // At the top - always show
-        console.log('At top - showing nav');
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        // Scrolling down and past 80px - hide nav
-        console.log('Scrolling down - hiding nav');
+      // Show/hide based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
-        setIsMobileMenuOpen(false);
-      } else if (currentScrollY < lastScrollY - 5) {
-        // Scrolling up with some threshold - show nav
-        console.log('Scrolling up - showing nav');
+      } else {
         setIsVisible(true);
       }
       
+      // Background effect when scrolled
+      setIsScrolled(currentScrollY > 50);
       setLastScrollY(currentScrollY);
     };
 
-    // Add passive listener for better performance
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Cleanup
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -57,33 +37,26 @@ const Navigation = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href) as HTMLElement;
+    const element = document.querySelector(href);
     if (element) {
-      const targetPosition = element.offsetTop - 80;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
   };
 
-  console.log('Rendering Navigation with isVisible:', isVisible);
-
   return (
-    <nav 
-      className={`fixed top-0 w-full z-[9999] transition-transform duration-500 ease-out ${
+    <div 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      } ${
         isScrolled 
-          ? "backdrop-blur-lg shadow-lg bg-slate-800/90" 
+          ? "bg-slate-900/95 backdrop-blur-md shadow-lg" 
           : "bg-transparent"
       }`}
-      style={{
-        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-        willChange: 'transform'
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
+          {/* Logo */}
           <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
             Ahmed
           </div>
@@ -94,7 +67,7 @@ const Navigation = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-white hover:text-cyan-400 transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/10"
+                className="text-white hover:text-cyan-400 transition-colors duration-200 font-medium"
               >
                 {item.label}
               </button>
@@ -107,7 +80,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-cyan-400 hover:bg-white/10"
+              className="text-white hover:text-cyan-400"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </Button>
@@ -116,20 +89,22 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 bg-slate-800/90 backdrop-blur-lg rounded-lg border border-slate-700/50 mt-2">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left py-3 px-4 text-white hover:text-cyan-400 hover:bg-slate-700/50 transition-all duration-300 rounded-lg mx-2 first:mt-2 last:mb-2"
-              >
-                {item.label}
-              </button>
-            ))}
+          <div className="md:hidden pb-4">
+            <div className="space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.href)}
+                  className="block w-full text-left py-2 px-4 text-white hover:text-cyan-400 hover:bg-white/10 rounded transition-colors duration-200"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
-    </nav>
+    </div>
   );
 };
 
