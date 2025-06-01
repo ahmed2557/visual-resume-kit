@@ -16,22 +16,26 @@ const Navigation = () => {
       // Set background blur when scrolled
       setIsScrolled(currentScrollY > 50);
       
-      // Hide/show navigation based on scroll direction
+      // Simplified scroll direction logic
       if (currentScrollY === 0) {
+        // At the top - always show
         setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down - hide nav
+      } else if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Scrolling down and past 80px - hide nav
         setIsVisible(false);
         setIsMobileMenuOpen(false);
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show nav
+      } else if (currentScrollY < lastScrollY - 5) {
+        // Scrolling up with some threshold - show nav
         setIsVisible(true);
       }
       
       setLastScrollY(currentScrollY);
     };
 
+    // Add passive listener for better performance
     window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    // Cleanup
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -56,13 +60,16 @@ const Navigation = () => {
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-[9999] transition-all duration-300 ease-in-out ${
-        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      className={`fixed top-0 w-full z-[9999] transition-all duration-500 ease-out ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
       } ${
         isScrolled 
-          ? "backdrop-blur-lg shadow-lg bg-slate-800/80" 
+          ? "backdrop-blur-lg shadow-lg bg-slate-800/90" 
           : "bg-transparent"
       }`}
+      style={{
+        willChange: 'transform'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
