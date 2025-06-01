@@ -72,14 +72,13 @@ const Navigation = () => {
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-[9999] transition-all duration-500 ease-out ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
-      } ${
+      className={`fixed top-0 w-full z-[9999] transition-transform duration-500 ease-out ${
         isScrolled 
           ? "backdrop-blur-lg shadow-lg bg-slate-800/90" 
           : "bg-transparent"
       }`}
       style={{
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
         willChange: 'transform'
       }}
     >
