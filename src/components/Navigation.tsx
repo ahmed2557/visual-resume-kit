@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,10 +16,10 @@ const Navigation = () => {
       
       // Show/hide based on scroll direction
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        console.log('Hiding nav');
+        console.log('Hiding nav - setting isVisible to false');
         setIsVisible(false);
       } else {
-        console.log('Showing nav');
+        console.log('Showing nav - setting isVisible to true');
         setIsVisible(true);
       }
       
@@ -48,16 +47,15 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  console.log('Navigation render - isVisible:', isVisible, 'isScrolled:', isScrolled);
+
   return (
-    <motion.div
-      initial={{ y: 0 }}
-      animate={{ y: isVisible ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+    <div
       className={`fixed top-0 left-0 right-0 w-full ${
         isScrolled 
           ? "bg-slate-900/95 backdrop-blur-md shadow-lg" 
           : "bg-transparent"
-      }`}
+      } ${isVisible ? 'block' : 'hidden'}`}
       style={{ zIndex: 9999 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,31 +92,23 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden pb-4 overflow-hidden"
-            >
-              <div className="space-y-2">
-                {navItems.map((item) => (
-                  <button
-                    key={item.label}
-                    onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left py-2 px-4 text-white hover:text-cyan-400 hover:bg-white/10 rounded transition-colors duration-200"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {isMobileMenuOpen && (
+          <div className="md:hidden pb-4">
+            <div className="space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.href)}
+                  className="block w-full text-left py-2 px-4 text-white hover:text-cyan-400 hover:bg-white/10 rounded transition-colors duration-200"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
