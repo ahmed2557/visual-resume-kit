@@ -49,19 +49,14 @@ const Navigation = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 w-full transition-all duration-300 ease-in-out ${
-        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      } ${
+      className={`fixed top-0 left-0 right-0 w-full transition-transform duration-300 ease-in-out ${
         isScrolled 
           ? "bg-slate-900/95 backdrop-blur-md shadow-lg" 
           : "bg-transparent"
       }`}
       style={{ 
-        zIndex: 99999,
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0
+        zIndex: 9999,
+        transform: isVisible ? 'translateY(0px)' : 'translateY(-100%)',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
