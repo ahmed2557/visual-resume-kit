@@ -12,11 +12,14 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      console.log('Current scroll:', currentScrollY, 'Last scroll:', lastScrollY);
       
       // Show/hide based on scroll direction
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        console.log('Hiding nav');
         setIsVisible(false);
       } else {
+        console.log('Showing nav');
         setIsVisible(true);
       }
       
@@ -25,7 +28,7 @@ const Navigation = () => {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -45,14 +48,15 @@ const Navigation = () => {
   };
 
   return (
-    <div 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
-      } ${
+    <nav 
+      className={`fixed top-0 left-0 right-0 w-full transition-transform duration-300 ease-in-out z-[9999] ${
         isScrolled 
           ? "bg-slate-900/95 backdrop-blur-md shadow-lg" 
           : "bg-transparent"
       }`}
+      style={{
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
@@ -104,7 +108,7 @@ const Navigation = () => {
           </div>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
