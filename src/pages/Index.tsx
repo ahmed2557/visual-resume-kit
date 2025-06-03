@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
-import Navigation from "@/components/Navigation";
+import ScrollNavigation from "@/components/ScrollNavigation";
 
 const Index = () => {
   return (
@@ -71,7 +71,7 @@ const Index = () => {
 
       {/* Content with optimized rendering */}
       <div className="relative z-10">
-        <Navigation />
+        <ScrollNavigation />
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
