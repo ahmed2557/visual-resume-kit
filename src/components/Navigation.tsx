@@ -51,12 +51,15 @@ const Navigation = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 w-full ${
+      className={`fixed top-0 left-0 right-0 w-full transition-transform duration-300 ease-in-out ${
         isScrolled 
           ? "bg-slate-900/95 backdrop-blur-md shadow-lg" 
           : "bg-transparent"
-      } ${isVisible ? 'block' : 'hidden'}`}
-      style={{ zIndex: 9999 }}
+      }`}
+      style={{ 
+        zIndex: 9999,
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
