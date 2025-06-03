@@ -45,67 +45,78 @@ const ScrollNavigation = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 w-full transition-all duration-300 ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
-      } ${
-        isScrolled 
-          ? "bg-slate-900/95 backdrop-blur-md shadow-lg" 
-          : "bg-transparent"
-      }`}
-      style={{ zIndex: 9999 }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Ahmed
-          </div>
+    <>
+      {/* Test fixed element to verify positioning works */}
+      <div 
+        className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded z-[10000]"
+        style={{ zIndex: 10000 }}
+      >
+        Fixed Test
+      </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => scrollToSection(item.href)}
-                className="text-white hover:text-cyan-400 transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+      <nav
+        className={`fixed top-0 left-0 right-0 w-full transition-all duration-300 z-[9999] ${
+          isScrolled 
+            ? "bg-slate-900/95 backdrop-blur-md shadow-lg" 
+            : "bg-slate-900/50"
+        }`}
+        style={{ 
+          zIndex: 9999,
+          transform: isVisible ? 'translateY(0)' : 'translateY(-100%)'
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            {/* Logo */}
+            <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Ahmed
+            </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-cyan-400"
-            >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden pb-4">
-            <div className="space-y-2">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left py-2 px-4 text-white hover:text-cyan-400 hover:bg-white/10 rounded transition-colors duration-200"
+                  className="text-white hover:text-cyan-400 transition-colors duration-200 font-medium"
                 >
                   {item.label}
                 </button>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-white hover:text-cyan-400"
+              >
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </Button>
+            </div>
           </div>
-        )}
-      </div>
-    </nav>
+
+          {/* Mobile Navigation */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden pb-4">
+              <div className="space-y-2">
+                {navItems.map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => scrollToSection(item.href)}
+                    className="block w-full text-left py-2 px-4 text-white hover:text-cyan-400 hover:bg-white/10 rounded transition-colors duration-200"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+    </>
   );
 };
 
