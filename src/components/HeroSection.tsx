@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="min-h-[80vh] flex items-center justify-center relative overflow-hidden pt-20">
+    <section id="home" className="min-h-[80vh] flex items-center justify-center relative overflow-hidden pt-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Photo Column */}
