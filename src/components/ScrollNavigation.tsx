@@ -1,11 +1,14 @@
+
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 const ScrollNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -21,11 +24,13 @@ const ScrollNavigation = () => {
       setIsScrolled(currentScrollY > 50);
       setLastScrollY(currentScrollY);
     };
+
     window.addEventListener("scroll", handleScroll, {
       passive: true
     });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
   const navItems = [{
     label: "Home",
     href: "#home"
@@ -39,6 +44,7 @@ const ScrollNavigation = () => {
     label: "Contact",
     href: "#contact"
   }];
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -48,10 +54,12 @@ const ScrollNavigation = () => {
     }
     setIsMobileMenuOpen(false);
   };
-  return <nav className={`sticky top-0 left-0 right-0 w-full transition-all duration-300 z-[9999] ${isScrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg" : "bg-slate-900/50"}`} style={{
-    transform: isVisible ? 'translateY(0)' : 'translateY(-100%)'
+
+  return <nav className={`sticky top-0 left-0 right-0 w-full transition-all duration-300 z-[9999] ${isScrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg" : ""}`} style={{
+    transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+    backgroundColor: 'transparent'
   }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -84,4 +92,5 @@ const ScrollNavigation = () => {
       </div>
     </nav>;
 };
+
 export default ScrollNavigation;

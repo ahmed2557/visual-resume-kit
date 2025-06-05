@@ -19,8 +19,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="home" className="min-h-[80vh] flex items-center justify-center relative overflow-hidden pt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Photo Column */}
           <motion.div
@@ -117,9 +117,9 @@ const HeroSection = () => {
               transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
             >
               A passionate mechatronics engineering student at MSA University speaking{" "}
-              <span className="font-bold text-cyan-300">Arabic</span>,{" "}
-              <span className="font-bold text-blue-300">English</span> and{" "}
-              <span className="font-bold text-purple-300">French</span> who loves building smart solutions that blend electronics, mechanical design, and software development.
+              <span className="font-bold text-red-400">Arabic</span>,{" "}
+              <span className="font-bold text-red-400">English</span> and{" "}
+              <span className="font-bold text-red-400">French</span> who loves building smart solutions that blend electronics, mechanical design, and software development.
             </motion.p>
 
             <motion.div
