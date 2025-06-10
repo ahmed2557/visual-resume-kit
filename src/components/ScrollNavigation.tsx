@@ -13,11 +13,13 @@ const ScrollNavigation = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Show/hide based on scroll direction
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
+      // Only hide/show navigation based on scroll when mobile menu is closed
+      if (!isMobileMenuOpen) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false);
+        } else {
+          setIsVisible(true);
+        }
       }
 
       // Background effect when scrolled
@@ -29,7 +31,7 @@ const ScrollNavigation = () => {
       passive: true
     });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isMobileMenuOpen]);
 
   const navItems = [{
     label: "Home",
@@ -52,13 +54,22 @@ const ScrollNavigation = () => {
         behavior: 'smooth'
       });
     }
+    // Close mobile menu after navigation
     setIsMobileMenuOpen(false);
+    // Ensure navigation stays visible after clicking
+    setIsVisible(true);
   };
 
-  return <nav className={`sticky top-0 left-0 right-0 w-full transition-all duration-300 z-[9999] ${isScrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg" : ""}`} style={{
-    transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-    backgroundColor: 'transparent'
-  }}>
+  return (
+    <nav 
+      className={`sticky top-0 left-0 right-0 w-full transition-all duration-300 z-[9999] ${
+        isScrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg" : ""
+      }`} 
+      style={{
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+        backgroundColor: 'transparent'
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
@@ -68,29 +79,49 @@ const ScrollNavigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            {navItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="text-white hover:text-cyan-400 transition-colors duration-200 font-medium">
+            {navItems.map(item => (
+              <button 
+                key={item.label} 
+                onClick={() => scrollToSection(item.href)} 
+                className="text-white hover:text-cyan-400 transition-colors duration-200 font-medium"
+              >
                 {item.label}
-              </button>)}
+              </button>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white hover:text-cyan-400">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+              className="text-white hover:text-cyan-400"
+            >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && <div className="md:hidden pb-4">
+        {isMobileMenuOpen && (
+          <div className="md:hidden pb-4">
             <div className="space-y-2">
-              {navItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="block w-full text-left py-2 px-4 text-white hover:text-cyan-400 hover:bg-white/10 rounded transition-colors duration-200">
+              {navItems.map(item => (
+                <button 
+                  key={item.label} 
+                  onClick={() => scrollToSection(item.href)} 
+                  className="block w-full text-left py-2 px-4 text-white hover:text-cyan-400 hover:bg-white/10 rounded transition-colors duration-200"
+                >
                   {item.label}
-                </button>)}
+                </button>
+              ))}
             </div>
-          </div>}
+          </div>
+        )}
       </div>
-    </nav>;
+    </nav>
+  );
 };
 
 export default ScrollNavigation;

@@ -1,15 +1,9 @@
+
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
-  const scrollToAbout = () => {
-    const aboutSection = document.querySelector('#about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const scrollToProjects = () => {
     const projectsSection = document.querySelector('#projects');
     if (projectsSection) {
@@ -172,30 +166,6 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Down Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
-        className="absolute bottom-8 left-8 z-10"
-      >
-        <motion.button
-          onClick={scrollToAbout}
-          whileHover={{ scale: 1.1, y: -2 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl"
-          aria-label="Scroll to About section"
-        >
-          <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ArrowDown size={24} />
-          </motion.div>
-        </motion.button>
-      </motion.div>
     </section>
   );
 };
